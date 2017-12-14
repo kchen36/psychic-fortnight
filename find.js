@@ -5,8 +5,8 @@ var boxWidth = box.offsetWidth;
 //hardcode target as center
 //randomize later
 
-var targetX = Math.floor(Math.random() * boxWidth);
-var targetY = Math.floor(Math.random() * boxHeight);
+var targetX = boxWidth * Math.random();
+var targetY = boxHeight * Math.random();
 
 
 console.log( "box height: " + boxHeight );
@@ -19,13 +19,13 @@ var distance = function (x0, y0, x1, y1) {
 
 
 var findIt = function(e) {
-    
     var posX = e.clientX;
     var posY = e.clientY;
+		var maxDist = distance(0, 0, boxWidth, boxHeight);
     var dist = distance(posX, posY, targetX, targetY);
-    console.log(dist);
-    var c = (800-dist)/800*255;
-    document.body.style.backgroundColor = 'rgb(' + c + ',' + 0 + ',' + 0 + ')';
+    var color = (1-dist/maxDist)*100;
+		console.log(color);
+    document.body.style.backgroundColor = 'hsl(159,100%,' + color + '%)';
 };
 
 /*
